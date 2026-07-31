@@ -183,9 +183,10 @@ jobs:
 
     - name: Create Release
       run: |
+        cd build-output
         RELEASE_TAG="cooking-$(date +'%H%M_%d.%m.%Y')"
         gh release create "$RELEASE_TAG" \
-          ./*part* \
+          ./kazamOS-2.0-amd64-part* \
           --repo ${{ github.repository }}
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
