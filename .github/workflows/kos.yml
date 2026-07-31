@@ -179,14 +179,13 @@ jobs:
           [ -e "$f" ] || continue
           rclone copy --progress "$f" "$RCLONE_REMOTE/"
         done
-        prefix="${ISO_FILE%.iso}-part."
-        split --numeric-suffixes=1 --suffix-length=3 -b 1000M "*.iso" "${prefix}"
+        ls -lh
 
     - name: Create Release
       run: |
         RELEASE_TAG="cooking-$(date +'%H%M_%d.%m.%Y')"
         gh release create "$RELEASE_TAG" \
-          ./$prefix* \
+          ./*part* \
           --repo ${{ github.repository }}
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
