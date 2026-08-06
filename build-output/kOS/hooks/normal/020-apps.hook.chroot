@@ -56,7 +56,7 @@ apt update
 apt install -t voltage calamares calamares-settings-kos xournalpp -y
 apt-mark hold calamares calamares-data libcalamares3.3 libcalamaresui3.3 snapd
 
-apt install kazamos-desktop-base donatepage rustdesk supertuxkart-mini termom fcitx5 fcitx-qalam fcitx-kos-theme fcitx5-frontend-all -y
+apt install kazamos-desktop-base donatepage rustdesk supertuxkart-mini termom fcitx5 fcitx-qalam fcitx-kos-theme fcitx5-frontend-all appgallery -y
 apt install -t mozilla firefox -y
 
 cp /etc/skel/.face /home/user/
