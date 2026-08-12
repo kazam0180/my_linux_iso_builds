@@ -7,7 +7,7 @@ set -e
 #am install kdenlive > /dev/null 2>&1
 #echo "KDENLIVE Installed"
 
-am install baobab
+am install baobab fluffychat
 
 echo "Installing Discord"
 # am install discord > /dev/null 2>&1
