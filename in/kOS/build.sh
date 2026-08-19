@@ -34,7 +34,7 @@ echo "Patching binary_bootloader_splash"
 sed -i "s|_PROJECT=\"Debian GNU/Linux\"|_PROJECT=\"kazamOS\"\n_DISTRIBUTION=\"voltage\"|g" /usr/lib/live/build/binary_bootloader_splash
 cat /usr/lib/live/build/binary_bootloader_splash
 
-. /output/kOS/terraform.conf
+. /in/kOS/terraform.conf
 
 
 if [ "$HWE_KERNEL" = "yes" ]; then
@@ -95,13 +95,13 @@ lb config \
   --iso-publisher "Kazam" \
   --security true
 
-sed -i "s/@XORG_HWE/$XORG_HWE/" /output/kOS/packages.list
-# sed -i "s/@KERNEL_HEADERS/linux-headers-$KERNEL_FLAVORS/" /output/kOS/packages.list
+sed -i "s/@XORG_HWE/$XORG_HWE/" /in/kOS/packages.list
+# sed -i "s/@KERNEL_HEADERS/linux-headers-$KERNEL_FLAVORS/" /in/kOS/packages.list
 
 if [ "$INSTALL_WINE" = "yes" ]; then
-    sed -i "s/#@WINE/WINE=yes/" /output/kOS/hooks/normal/020-apps.hook.chroot
+    sed -i "s/#@WINE/WINE=yes/" /in/kOS/hooks/normal/020-apps.hook.chroot
 else
-    sed -i "s/#@WINE/WINE=no/" /output/kOS/hooks/normal/020-apps.hook.chroot
+    sed -i "s/#@WINE/WINE=no/" /in/kOS/hooks/normal/020-apps.hook.chroot
 fi
 
 mkdir -p config/package-lists
@@ -109,18 +109,18 @@ cp /output/kOS/packages.list config/package-lists/custom.list.chroot
 #cp /output/kOS/binary.list config/package-lists/pool.list.binary
 
 mkdir -p config/hooks/normal
-tree /output/ -L 3 || echo "/output doesn't exist"
-cp /output/kOS/hooks/normal/000-setup.hook.chroot config/hooks/normal/000-setup.hook.chroot
-cp /output/kOS/hooks/normal/001-datetime.hook.chroot config/hooks/normal/001-datetime.hook.chroot
-cp /output/kOS/hooks/normal/010-am.hook.chroot config/hooks/normal/010-am.hook.chroot
-cp /output/kOS/hooks/normal/020-apps.hook.chroot config/hooks/normal/020-apps.hook.chroot
-cp /output/kOS/hooks/normal/020-themes.hook.chroot config/hooks/normal/020-themes.hook.chroot
-cp /output/kOS/hooks/normal/999-desktop-config.hook.chroot config/hooks/normal/999-desktop-config.hook.chroot
-cp /output/kOS/hooks/normal/999-local-repo.hook.chroot config/hooks/normal/999-local-repo.hook.chroot
+tree /in/ -L 3 || echo "/in doesn't exist"
+cp /in/kOS/hooks/normal/000-setup.hook.chroot config/hooks/normal/000-setup.hook.chroot
+cp /in/kOS/hooks/normal/001-datetime.hook.chroot config/hooks/normal/001-datetime.hook.chroot
+cp /in/kOS/hooks/normal/010-am.hook.chroot config/hooks/normal/010-am.hook.chroot
+cp /in/kOS/hooks/normal/020-apps.hook.chroot config/hooks/normal/020-apps.hook.chroot
+cp /in/kOS/hooks/normal/020-themes.hook.chroot config/hooks/normal/020-themes.hook.chroot
+cp /in/kOS/hooks/normal/999-desktop-config.hook.chroot config/hooks/normal/999-desktop-config.hook.chroot
+cp /in/kOS/hooks/normal/999-local-repo.hook.chroot config/hooks/normal/999-local-repo.hook.chroot
 
 mkdir -p config/includes.chroot/
-cp -r /output/kOS/includes.chroot/etc config/includes.chroot/
-cp -r /output/kOS/includes.chroot/usr config/includes.chroot/
+cp -r /in/kOS/includes.chroot/etc config/includes.chroot/
+cp -r /in/kOS/includes.chroot/usr config/includes.chroot/
 
 tree config/ -L 3
 

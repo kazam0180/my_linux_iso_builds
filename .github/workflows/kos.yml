@@ -42,10 +42,12 @@ jobs:
           sed -i "s/INSTALL_WINE/#/" build-output/kOS/terraform.conf
           echo "INSTALL_WINE=yes" >> build-output/kOS/terraform.conf
         fi
+        mkdir -p build-output
         docker run --privileged --rm \
-          -v $PWD/build-output:/output \
+          -v $PWD/in:/in \
+          -v $PWD/build-output:/output
           debian:trixie \
-          /output/kOS/build.sh
+          /in/kOS/build.sh
 
     - name: Upload build log
       if: always()
@@ -77,8 +79,8 @@ jobs:
     - name: Verify ISO
       id: iso_name
       run: |
+        . in/kOS/terraform.conf
         cd build-output
-        . kOS/terraform.conf
 
         for f in *.iso; do
           newname=$(echo $f | sed "s/live-image/kazamOS-$VERSION/")
