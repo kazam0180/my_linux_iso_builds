@@ -105,8 +105,8 @@ else
 fi
 
 mkdir -p config/package-lists
-cp /output/kOS/packages.list config/package-lists/custom.list.chroot
-#cp /output/kOS/binary.list config/package-lists/pool.list.binary
+cp /in/kOS/packages.list config/package-lists/custom.list.chroot
+#cp /in/kOS/binary.list config/package-lists/pool.list.binary
 
 mkdir -p config/hooks/normal
 tree /in/ -L 3 || echo "/in doesn't exist"
