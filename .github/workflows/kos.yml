@@ -45,7 +45,7 @@ jobs:
         mkdir -p build-output
         docker run --privileged --rm \
           -v $PWD/in:/in \
-          -v $PWD/build-output:/output
+          -v $PWD/build-output:/output \
           debian:trixie \
           /in/kOS/build.sh
 
