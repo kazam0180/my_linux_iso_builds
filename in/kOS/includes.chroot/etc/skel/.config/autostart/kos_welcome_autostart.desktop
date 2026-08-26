@@ -1,0 +1,5 @@
+[Desktop Entry]
+Hidden=false
+TryExec=kazamos_welcome
+Exec=kazamos_welcome
+Type=Application
