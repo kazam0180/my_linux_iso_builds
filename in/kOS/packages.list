@@ -57,9 +57,9 @@ network-manager
 network-manager-gnome
 
 # Firmware
-linux-firmware
-firmware-carl9170
-firmware-ath9k-htc
+firmware-linux
+#firmware-carl9170
+#firmware-ath9k-htc
 intel-microcode
 amd64-microcode
 
@@ -120,7 +120,6 @@ xdg-desktop-portal-gtk
 webp-pixbuf-loader
 apt-utils
 tree
-software-properties-common
 extrepo
 
 # LightDM
