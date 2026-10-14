@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Icon=helium
+Type=X-XFCE-Helper
+Name=Helium
+StartupNotify=true
+X-XFCE-Binaries=helium;/opt/am/helium/helium;
+X-XFCE-Category=WebBrowser
+X-XFCE-Commands=%B;
+X-XFCE-CommandsWithParameter=%B %s;
