@@ -13,11 +13,6 @@ gtk-update-icon-cache -f -t /usr/share/icons/hicolor
 # after install /opt/am becomes read-only
 chmod -R 757 /opt/am
 
-# fix netplan not allowing network manager to manage the network
-
-#netplan generate
-#systemctl restart NetworkManager
-
 # local repo with bootloader packages
 if ! loginctl list-users | grep -qw user; then
     rm -f /etc/apt/sources.list.d/local.list
