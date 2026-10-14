@@ -8,6 +8,7 @@ set -e
 #echo "KDENLIVE Installed"
 
 am install baobab fluffychat
+echo "2" | am install helium
 
 echo "Installing Discord"
 # am install discord > /dev/null 2>&1
@@ -61,7 +62,7 @@ apt install -t voltage calamares calamares-settings-kos xournalpp -y
 apt-mark hold calamares calamares-data libcalamares3.3 libcalamaresui3.3
 
 apt install kazamos-desktop-base donatepage kos-welcome rustdesk supertuxkart-mini termom fcitx5 fcitx-qalam fcitx-kos-theme fcitx5-frontend-all appgallery -y
-apt install -t mozilla firefox -y
+#apt install -t mozilla firefox -y
 
 cp /etc/skel/.face /home/user/
 (cd /home/user;ln -sf .face .face.icon;chown -R user:user .face*)
