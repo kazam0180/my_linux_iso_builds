@@ -59,7 +59,7 @@ echo "deb [signed-by=/etc/apt/keyrings/mozilla.gpg] https://packages.mozilla.org
 
 apt update
 apt install -t voltage calamares calamares-settings-kos xournalpp -y
-apt-mark hold calamares calamares-data libcalamares3.3 libcalamaresui3.3
+apt-mark hold calamares calamares-settings-kos
 
 apt install kazamos-desktop-base donatepage kos-welcome rustdesk supertuxkart-mini termom fcitx5 fcitx-qalam fcitx-kos-theme fcitx5-frontend-all appgallery -y
 #apt install -t mozilla firefox -y
