@@ -39,7 +39,7 @@ sed -i 's/Hidden=true/Hidden=false/' /etc/xdg/autostart/xfce4-clipman-plugin-aut
 
 cat /etc/os-release
 
-mv /etc/os-release /etc/os-release-ubuntu
+mv /etc/os-release /etc/os-release-debian
 
 cat > /etc/os-release << 'EOF'
 PRETTY_NAME="kazamOS 2.0 (voltage)"
@@ -49,9 +49,7 @@ VERSION="2 (voltage)"
 VERSION_CODENAME=voltage
 ID="kazamos"
 LOGO="kazamos-short"
-ID_LIKE="ubuntu debian"
-UBUNTU_CODENAME=resolute
-UBUNTU_VERSION_CODENAME=resolute
+ID_LIKE=debian
 HOME_URL="https://kazamOS.gitlab.io/"
 SUPPORT_URL="https://matrix.to/#/#kazamos:matrix.org/"
 BUG_REPORT_URL="https://gitlab.com/kazamOS/"
