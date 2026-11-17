@@ -121,6 +121,16 @@ webp-pixbuf-loader
 apt-utils
 tree
 extrepo
+util-linux-extra
+console-setup
+
+# LUKS-encrypted live-boot persistence.
+# cryptsetup-initramfs installs the initramfs hook that copies cryptsetup,
+# dmsetup, askpass and dm_crypt into the initrd. It is only a Suggests of
+# the cryptsetup package, so it must be listed explicitly. Without it
+# live-boot cannot unlock a LUKS persistence volume at boot.
+cryptsetup
+cryptsetup-initramfs
 
 # LightDM
 lightdm

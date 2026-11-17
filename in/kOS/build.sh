@@ -8,7 +8,8 @@ df -h
 
 apt-get update
 apt-get install -y tree live-build debootstrap tar unar syslinux-utils \
-    isolinux debian-archive-keyring squashfs-tools genisoimage zstd
+    isolinux debian-archive-keyring squashfs-tools genisoimage zstd \
+    initramfs-tools-core
 
 mkdir -p /tmp/live-build
 cd /tmp/live-build
@@ -55,6 +56,13 @@ fi
 mkdir -p config/package-lists
 cp /in/kOS/packages.list config/package-lists/custom.list.chroot
 #cp /in/kOS/binary.list config/package-lists/pool.list.binary
+
+# Custom grub menu: plain live boot plus persistence and LUKS-persistence
+# entries. binary_grub_cfg copies this over the stock grub.cfg and replaces
+# the @...@ placeholders before writing binary/boot/grub/grub.cfg. That file
+# is used by both the BIOS (grub-pc) and UEFI boot paths.
+mkdir -p config/bootloaders/grub-pc
+cp /in/kOS/bootloaders/grub-pc/grub.cfg config/bootloaders/grub-pc/grub.cfg
 
 mkdir -p config/hooks/normal
 tree /in/ -L 3 || echo "/in doesn't exist"
@@ -118,6 +126,26 @@ echo "================================"
 echo "DIAGNOSTIC: Checking boot files"
 echo "================================"
 find binary -name "vmlinuz*" -o -name "initrd*" | xargs ls -lh
+
+# Verify the generated initramfs actually contains cryptsetup. live-boot
+# calls cryptsetup directly when unlocking a LUKS persistence volume, so an
+# initrd without it boots but silently fails to provide encrypted persistence.
+# This guards against the package being dropped from packages.list or the
+# cryptsetup-initramfs hook not running.
+echo "================================"
+echo "DIAGNOSTIC: Checking initramfs cryptsetup support"
+echo "================================"
+INITRD=$(find binary -name 'initrd*' -type f | head -n 1)
+if [ -z "$INITRD" ]; then
+  echo "ERROR: No initrd found; cannot verify cryptsetup support"
+elif lsinitramfs "$INITRD" | grep -Eq '(^|/)(sbin/)?cryptsetup$'; then
+  echo "OK: cryptsetup present in $INITRD (LUKS persistence can be unlocked)"
+else
+  echo "ERROR: cryptsetup is MISSING from $INITRD"
+  echo "ERROR: LUKS-encrypted persistence will NOT work. Check that"
+  echo "ERROR: cryptsetup and cryptsetup-initramfs are in packages.list"
+  exit 1
+fi
 
 if [ -f *.iso ]; then
   ISO_FILE=$(ls *.iso | head -n 1)

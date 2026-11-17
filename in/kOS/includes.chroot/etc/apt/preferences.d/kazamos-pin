@@ -1,0 +1,3 @@
+Package: calamares calamares-settings-kos
+Pin: release o=kazamOS
+Pin-Priority: 1001

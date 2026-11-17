@@ -7,7 +7,7 @@ set -e
 #am install kdenlive > /dev/null 2>&1
 #echo "KDENLIVE Installed"
 
-am install baobab fluffychat
+am install baobab fluffychat kate
 echo "2" | am install helium
 
 echo "Installing Discord"

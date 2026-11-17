@@ -71,6 +71,7 @@
       <property name="grouping" type="bool" value="false"/>
       <property name="show-handle" type="bool" value="false"/>
       <property name="show-labels" type="bool" value="true"/>
+      <property name="sort-order" type="uint" value="4"/>
     </property>
     <property name="plugin-3" type="string" value="separator">
       <property name="expand" type="bool" value="true"/>
